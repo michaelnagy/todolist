@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "dependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "semantic-ui-react": "^0.68.5"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

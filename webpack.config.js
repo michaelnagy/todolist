@@ -18,7 +18,7 @@ module.exports = {
           exclude: /node_modules/
       },
       { // regular css files
-        test: /\.(sass|scss)$/, 
+        test: /\.(css|sass|scss)$/, 
           use: ExtractTextPlugin.extract({
               fallback: 'style-loader',
               loader: ['css-loader','sass-loader'],
@@ -38,11 +38,10 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, "public"),
     compress: true,
-    hot: true,
     overlay: true
   },
   plugins: [
-    new ExtractTextPlugin({ // define where to save the file
+    new ExtractTextPlugin({
       filename: '[name].bundle.css',
       disable: false,
       allChunks: true,
