@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Grid, Image } from 'semantic-ui-react'
+import TodoInput from './TodoInput/TodoInput'
 import './App.scss';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
           <Grid.Row>
           <Header>The Redux TodoList</Header>
             <Grid.Column>
-              <p>Teste</p>
+              <TodoInput />
             </Grid.Column>
           </Grid.Row>
         </Grid>
