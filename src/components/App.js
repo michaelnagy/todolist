@@ -1,10 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 import { Container, Header, Grid, Image } from 'semantic-ui-react'
 import TodoInput from './TodoInput/TodoInput'
 import TaskContainer from './TaskContainer/TaskContainer'
 import './App.scss';
 
 class App extends Component {
+  constructor() {
+    super()  
+  }
+
+  // mapStateToProps = (state, ownProps) => {
+  //   return {
+  //     {{id:prop}}: state.{{prop}}
+  //   }
+  // }
+
+  // const mapDispatchToProps = (dispatch, ownProps) => {
+  //   return {
+  //     {{dispatch1}}: () => {
+  //       dispatch({{actionCreator}})
+  //     }
+  //   }
+  // }
+
   render() {
     return (
       <Container textAlign={'center'}>

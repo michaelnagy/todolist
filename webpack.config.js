@@ -12,12 +12,12 @@ module.exports = {
   },
   module: {
     rules: [
-      { // js files
+      { 
         test: /\.js$/,
           use: ['babel-loader'],
           exclude: /node_modules/
       },
-      { // regular css files
+      {
         test: /\.(css|sass|scss)$/, 
           use: ExtractTextPlugin.extract({
               fallback: 'style-loader',

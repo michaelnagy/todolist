@@ -1,6 +1,6 @@
 # Build folder
-public/main.bundle.css
-public/bundle.js
+public/*.css
+public/*.js
 
 # Dependency directory
 node_modules

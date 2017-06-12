@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTodo } from '../../redux/actions'
 import { Form, Input, Segment } from 'semantic-ui-react'
 import './TodoInput.scss'
 
@@ -15,12 +17,14 @@ class TodoInput extends Component {
   }
 
   handleSubmit = (e) => {
-    console.log('Enviou');
-    
-
     e.preventDefault();
-  }  
-
+    // this.props.dispatch({
+    //   type : 'ADD_TODO', payload: this.state.value
+    // })
+    console.log(this.state.value);
+    
+    this.props.addTodo(this.state.value)
+  }
 
   render () {
     return (
@@ -28,13 +32,22 @@ class TodoInput extends Component {
         <Form onSubmit={this.handleSubmit}>
             <Form.Field>
               <Input fluid={true} size='massive' onChange={ this.handleInputChange } placeholder='Insert your task and hit Enter'/>
+              <input type="submit" style={{display: "none"}} />
             </Form.Field>
         </Form>
-        
-        
       </Segment>
     )
   }
 }
 
-export default TodoInput
+const mapStateToProps = state => {
+    return {
+    todo : state
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {addTodo:addTodo}
+)(TodoInput)
+
