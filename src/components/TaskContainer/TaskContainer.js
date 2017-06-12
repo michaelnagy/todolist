@@ -1,24 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteTodo } from '../../redux/actions'
+import { deleteTodo, reverseAction } from '../../redux/actions'
 import { Card, Button, Grid, Icon } from 'semantic-ui-react'
 import './TaskContainer.scss'
 
 class TaskContainer extends Component {
   constructor (props) {
     super(props)
-    
+
+    this.state = {active: false}
   }
 
+  reverseOrder = () => {
+    this.setState({ active: !this.state.active })
+    this.props.reverseAction()
+  }
+
+ 
   render () {
+    let { active } = this.state
     return (
       <Grid.Row className='task-container'>
         <Grid columns={1}>
           <Grid.Column>
-            <Button.Group>
-              <Button labelPosition='left' icon='left chevron' content='Oldest first' />
-              <Button labelPosition='right' icon='right chevron' content='Newest first' />
-            </Button.Group>
+            <Button toggle active={active} onClick={this.reverseOrder}>
+              <Icon size='large' name='exchange' /> { active ? 'Newer first' : 'Older first' }
+            </Button>
           </Grid.Column>
         </Grid>
         <Card.Group>
@@ -56,7 +63,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = (dispatch) => {
   return({
-    deleteTodo: id => dispatch(deleteTodo(id))
+    deleteTodo: id => dispatch(deleteTodo(id)),
+    reverseAction: () => dispatch(reverseAction())
   }) 
 }
 

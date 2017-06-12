@@ -16,11 +16,14 @@ const rootReducer = (state = initialState, action) => {
       return [...state, { id: nextId++, text: action.text, completed: false} ]
         
     case 'DELETE_TODO':
-      const newState = state.filter(
+      let newState = state.filter(
         elem => {  return elem.id !== action.id }
       )
       console.log('reduced array: ', newState);
       return newState
+
+    case 'REVERSE_TODO':
+      return Array.prototype.slice.call(state).reverse()
 
     default:
       return state;
