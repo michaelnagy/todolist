@@ -8,14 +8,19 @@ const initialState = [
       completed: false
     }
   ]
+let nextId = 1
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TODO': 
-      return [...state, { id: state[state.length-1].id + 1, text: action.text, completed: false} ]
+      return [...state, { id: nextId++, text: action.text, completed: false} ]
         
-    // case 'TASK_DELETED':{}
-    //   return {...state, action.payload }
+    case 'DELETE_TODO':
+      const newState = state.filter(
+        elem => {  return elem.id !== action.id }
+      )
+      console.log('reduced array: ', newState);
+      return newState
 
     default:
       return state;

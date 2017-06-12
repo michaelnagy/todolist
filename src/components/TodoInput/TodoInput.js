@@ -18,22 +18,15 @@ class TodoInput extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.dispatch({
-    //   type : 'ADD_TODO', payload: this.state.value
-    // })
-    console.log(this.state.value);
-    
     this.props.addTodo(this.state.value)
+    document.getElementById("taskinput").value = ''
   }
 
   render () {
     return (
       <Segment inverted className='todo-input'>
         <Form onSubmit={this.handleSubmit}>
-            <Form.Field>
-              <Input fluid={true} size='massive' onChange={ this.handleInputChange } placeholder='Insert your task and hit Enter'/>
-              <input type="submit" style={{display: "none"}} />
-            </Form.Field>
+          <Input id='taskinput' fluid={true} size='massive' onChange={ this.handleInputChange } placeholder='Insert your task and hit Enter'/>
         </Form>
       </Segment>
     )
