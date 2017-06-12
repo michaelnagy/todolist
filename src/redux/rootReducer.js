@@ -11,12 +11,13 @@ const initialState = [
 let nextId = 1
 
 const rootReducer = (state = initialState, action) => {
+  let newState = [] 
   switch (action.type) {
     case 'ADD_TODO': 
       return [...state, { id: nextId++, text: action.text, completed: false} ]
         
     case 'DELETE_TODO':
-      let newState = state.filter(
+      newState = state.filter(
         elem => {  return elem.id !== action.id }
       )
       console.log('reduced array: ', newState);
@@ -24,6 +25,19 @@ const rootReducer = (state = initialState, action) => {
 
     case 'REVERSE_TODO':
       return Array.prototype.slice.call(state).reverse()
+
+    case 'COMPLETE_TODO':
+      newState = state
+      // state.map((todo, i) => {
+      //   if( todo.id === action.id) {
+      //     todo.completed = !todo.completed
+      //     return todo
+      //   }
+      //   else {
+      //     return todo
+      //   }
+      // })
+      return newState
 
     default:
       return state;

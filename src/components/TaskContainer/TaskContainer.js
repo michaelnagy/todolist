@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteTodo, reverseAction } from '../../redux/actions'
+import { deleteTodo, reverseAction, completeTodo } from '../../redux/actions'
 import { Card, Button, Grid, Icon } from 'semantic-ui-react'
 import './TaskContainer.scss'
 
@@ -35,7 +35,7 @@ class TaskContainer extends Component {
                         <Card.Header>
                           <span>{item.text}</span>
                           <span style={{float:'right'}}>
-                            <Icon link={true} color={'green'} name='check' />
+                            <Icon link={true} onClick={() => this.props.completeTodo(item.id)} color={'green'} name='check' />
                             <Icon link={true} onClick={() => this.props.deleteTodo(item.id)} color={'violet'} name='delete' /> 
                           </span>
                         </Card.Header>
@@ -64,7 +64,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return({
     deleteTodo: id => dispatch(deleteTodo(id)),
-    reverseAction: () => dispatch(reverseAction())
+    reverseAction: () => dispatch(reverseAction()),
+    completeTodo: id => dispatch(completeTodo(id))
   }) 
 }
 
