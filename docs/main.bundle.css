@@ -1,10 +1,64 @@
 .todo-input input[placeholder] {
   text-align: center; }
-.task-container i {
-  transition: all .1s ease-in-out; }
-  .task-container i:hover {
+.button {
+  margin: 1rem !important; }
+
+.task-container .cards i {
+  transition: all .2s ease-in-out; }
+  .task-container .cards i:hover {
     transform: scale(1.5); }
+
+.task-container .ui.fluid.card.todo-item {
+  opacity: 1; }
+  .task-container .ui.fluid.card.todo-item.filtered {
+    display: none; }
+  .task-container .ui.fluid.card.todo-item.completed span:first-of-type {
+    text-decoration: line-through; }
 body {
   background-color: blueviolet; }
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both; }
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0); }
+  to {
+    opacity: 1;
+    transform: none; } }
+
+.fadeInDown {
+  animation-name: fadeInDown; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0); }
+  to {
+    opacity: 1;
+    transform: none; } }
+
+.fadeInUp {
+  animation-name: fadeInUp; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+.fadeIn {
+  animation-name: fadeIn; }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0.5; } }
+
+.fadeOut {
+  animation-name: fadeOut; }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtYWluLmJ1bmRsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
