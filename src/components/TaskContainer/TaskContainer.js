@@ -20,15 +20,15 @@ class TaskContainer extends Component {
 
   filterDone = () => {
     this.setState({ show_done: !this.state.show_done })
-    console.log(this.state.show_done);
-    
   }
+  
 
   render () {
-    let { active, show_done } = this.state
+    // destructuring props and state
+    let { active, show_done, loading } = this.state
     let { todo } = this.props 
     return (
-      <Grid.Row className='task-container'>
+      <Grid.Row className='task-container animated fadeInUp'>
         <Grid columns={1}>
           <Grid.Column>
             <Button toggle active={active} onClick={this.reverseOrder}>
@@ -39,8 +39,8 @@ class TaskContainer extends Component {
         <Card.Group>
           { todo.map((item, i) => {
             return <Card fluid key={i} 
-                      className={'todo-item' 
-                                + (item.completed ? ' completed' : '') 
+                      className={'todo-item animated fadeIn' 
+                                + (item.completed ? ' completed fadeOut' : '') 
                                 + (!item.completed && show_done ? ' filtered' : '')
                     }>
                       <Card.Content>
@@ -78,7 +78,6 @@ const mapDispatchToProps = dispatch =>
     reverseAction: () => dispatch(reverseAction()),
     completeTodo: id => dispatch(completeTodo(id))
   }) 
-
 
 export default connect(
   mapStateToProps,

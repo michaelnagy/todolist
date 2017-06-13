@@ -1,6 +1,6 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import { logger } from 'redux-logger'
-import { storedState, saveState } from './localStorage'
+import { storedState, saveState } from './persistance'
 
 let initialState = storedState()
 

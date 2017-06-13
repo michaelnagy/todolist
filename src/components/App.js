@@ -6,13 +6,12 @@ import './App.scss';
 
 class App extends Component {
   constructor() {
-    super()  
+    super()
   }
 
   render() {
     return (
       <Container textAlign={'center'}>
-        
         <Grid columns={1} centered>
           <Grid.Row>
           <Header style={{padding:'2rem'}} as='h1'>The Redux TodoList</Header>
