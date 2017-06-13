@@ -7,7 +7,6 @@ import './TaskContainer.scss'
 class TaskContainer extends Component {
   constructor (props) {
     super(props)
-
     this.state = {
       active: false,
       show_done: false
@@ -25,9 +24,9 @@ class TaskContainer extends Component {
     
   }
 
- 
   render () {
     let { active, show_done } = this.state
+    let { todo } = this.props 
     return (
       <Grid.Row className='task-container'>
         <Grid columns={1}>
@@ -38,11 +37,11 @@ class TaskContainer extends Component {
           </Grid.Column>
         </Grid>
         <Card.Group>
-          {this.props.todo.map((item, i) => {
+          { todo.map((item, i) => {
             return <Card fluid key={i} 
-                         className={'todo-item' 
-                                    + (item.completed ? ' completed' : '') 
-                                    + (!item.completed && show_done ? ' filtered' : '')
+                      className={'todo-item' 
+                                + (item.completed ? ' completed' : '') 
+                                + (!item.completed && show_done ? ' filtered' : '')
                     }>
                       <Card.Content>
                         <Card.Header>
@@ -73,13 +72,13 @@ const mapStateToProps = state => {
     todo : state
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return({
+const mapDispatchToProps = dispatch => 
+  ({
     deleteTodo: id => dispatch(deleteTodo(id)),
     reverseAction: () => dispatch(reverseAction()),
     completeTodo: id => dispatch(completeTodo(id))
   }) 
-}
+
 
 export default connect(
   mapStateToProps,

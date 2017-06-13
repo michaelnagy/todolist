@@ -1,5 +1,6 @@
-import { createStore, applyMiddleware } from 'redux'
+import { compose, createStore, applyMiddleware } from 'redux'
 import { logger } from 'redux-logger'
+import {persistStore, autoRehydrate} from 'redux-persist'
 
 const initialState = [
     {
@@ -10,7 +11,7 @@ const initialState = [
   ]
 let nextId = 1
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state, action) => {
   let newState = [] 
   switch (action.type) {
     case 'ADD_TODO': 
@@ -28,12 +29,22 @@ const rootReducer = (state = initialState, action) => {
     case 'COMPLETE_TODO':
       return state.map(todo => todo.id === action.id
       ? { ...todo, completed: !todo.completed }
-      : todo) 
+      : todo)
 
     default:
       return state;
   }
 }
 
-const store = createStore(rootReducer, applyMiddleware(logger))
+const store = createStore(
+  rootReducer,
+  initialState,
+  compose(
+    applyMiddleware(logger),
+    autoRehydrate()
+  )
+)
+
+persistStore(store)
+// const store = createStore(rootReducer, initialState, applyMiddleware(logger))
 export default store
