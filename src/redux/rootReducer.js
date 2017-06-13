@@ -1,14 +1,19 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import { logger } from 'redux-logger'
-import {persistStore, autoRehydrate} from 'redux-persist'
+import { storedState, saveState } from './localStorage'
 
-const initialState = [
+let initialState = storedState()
+
+if (!initialState) {
+  initialState =  [
     {
       id: 0, 
       text: 'Example Task (Delete it if you want)', 
       completed: false
     }
   ]
+}
+    
 let nextId = 1
 
 const rootReducer = (state, action) => {
@@ -36,15 +41,11 @@ const rootReducer = (state, action) => {
   }
 }
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  compose(
-    applyMiddleware(logger),
-    autoRehydrate()
-  )
-)
+const store = createStore(rootReducer, initialState, applyMiddleware(logger))
 
-persistStore(store)
-// const store = createStore(rootReducer, initialState, applyMiddleware(logger))
+// listening to changes to the store and saving it in LocalStorage
+store.subscribe(() => {
+  saveState(store.getState())
+})
+
 export default store
