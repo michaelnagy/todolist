@@ -30,7 +30,7 @@ class TaskContainer extends Component {
         </Grid>
         <Card.Group>
           {this.props.todo.map((item, i) => {
-            return <Card fluid key={i}>
+            return <Card fluid key={i} className={'todo-item' + (item.completed ? ' completed' : '') }>
                       <Card.Content>
                         <Card.Header>
                           <span>{item.text}</span>

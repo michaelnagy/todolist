@@ -26,7 +26,7 @@ class TodoInput extends Component {
     return (
       <Segment inverted className='todo-input'>
         <Form onSubmit={this.handleSubmit}>
-          <Input id='taskinput' fluid={true} size='massive' onChange={ this.handleInputChange } placeholder='Insert your task and hit Enter'/>
+          <Input id='taskinput' fluid={true} size='massive' onChange={ this.handleInputChange } placeholder='Insert your task and hit Enter' required/>
         </Form>
       </Segment>
     )

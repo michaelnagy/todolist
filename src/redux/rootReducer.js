@@ -20,24 +20,15 @@ const rootReducer = (state = initialState, action) => {
       newState = state.filter(
         elem => {  return elem.id !== action.id }
       )
-      console.log('reduced array: ', newState);
       return newState
 
     case 'REVERSE_TODO':
       return Array.prototype.slice.call(state).reverse()
 
     case 'COMPLETE_TODO':
-      newState = state
-      // state.map((todo, i) => {
-      //   if( todo.id === action.id) {
-      //     todo.completed = !todo.completed
-      //     return todo
-      //   }
-      //   else {
-      //     return todo
-      //   }
-      // })
-      return newState
+      return state.map(todo => todo.id === action.id
+      ? { ...todo, completed: !todo.completed }
+      : todo)
 
     default:
       return state;
