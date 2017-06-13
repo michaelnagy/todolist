@@ -20,7 +20,7 @@ const rootReducer = (state, action) => {
       return [...state, { id: state[state.length-1].id+1, text: action.text, completed: false} ]
         
     case 'DELETE_TODO':
-      newState = state.filter(
+    let  newState = state.filter(
         elem => {  return elem.id !== action.id }
       )
       return newState
