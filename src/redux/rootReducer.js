@@ -28,7 +28,7 @@ const rootReducer = (state = initialState, action) => {
     case 'COMPLETE_TODO':
       return state.map(todo => todo.id === action.id
       ? { ...todo, completed: !todo.completed }
-      : todo)
+      : todo) 
 
     default:
       return state;

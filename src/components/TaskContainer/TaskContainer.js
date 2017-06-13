@@ -8,7 +8,10 @@ class TaskContainer extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {active: false}
+    this.state = {
+      active: false,
+      show_done: false
+    }
   }
 
   reverseOrder = () => {
@@ -16,9 +19,15 @@ class TaskContainer extends Component {
     this.props.reverseAction()
   }
 
+  filterDone = () => {
+    this.setState({ show_done: !this.state.show_done })
+    console.log(this.state.show_done);
+    
+  }
+
  
   render () {
-    let { active } = this.state
+    let { active, show_done } = this.state
     return (
       <Grid.Row className='task-container'>
         <Grid columns={1}>
@@ -30,7 +39,11 @@ class TaskContainer extends Component {
         </Grid>
         <Card.Group>
           {this.props.todo.map((item, i) => {
-            return <Card fluid key={i} className={'todo-item' + (item.completed ? ' completed' : '') }>
+            return <Card fluid key={i} 
+                         className={'todo-item' 
+                                    + (item.completed ? ' completed' : '') 
+                                    + (!item.completed && show_done ? ' filtered' : '')
+                    }>
                       <Card.Content>
                         <Card.Header>
                           <span>{item.text}</span>
@@ -46,8 +59,7 @@ class TaskContainer extends Component {
         <Grid columns={1}>
           <Grid.Column>
             <Button.Group>
-              <Button>Show done</Button>
-              <Button>Show all</Button>
+              <Button onClick={this.filterDone} >{ show_done ? 'Show all' : 'Show done' }</Button>
             </Button.Group>
           </Grid.Column>
         </Grid>

@@ -9,20 +9,6 @@ class App extends Component {
     super()  
   }
 
-  // mapStateToProps = (state, ownProps) => {
-  //   return {
-  //     {{id:prop}}: state.{{prop}}
-  //   }
-  // }
-
-  // const mapDispatchToProps = (dispatch, ownProps) => {
-  //   return {
-  //     {{dispatch1}}: () => {
-  //       dispatch({{actionCreator}})
-  //     }
-  //   }
-  // }
-
   render() {
     return (
       <Container textAlign={'center'}>
