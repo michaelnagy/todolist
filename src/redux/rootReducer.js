@@ -13,14 +13,11 @@ if (!initialState) {
     }
   ]
 }
-    
-let nextId = 1
 
 const rootReducer = (state, action) => {
-  let newState = [] 
   switch (action.type) {
-    case 'ADD_TODO': 
-      return [...state, { id: nextId++, text: action.text, completed: false} ]
+    case 'ADD_TODO':
+      return [...state, { id: state[state.length-1].id+1, text: action.text, completed: false} ]
         
     case 'DELETE_TODO':
       newState = state.filter(
